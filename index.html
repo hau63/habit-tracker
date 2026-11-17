@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!-- index.html: khung giao diện chính — header, vùng nội dung 3 tab, thanh tab dưới -->
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Habit Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <p class="date"><i class="dot"></i><span id="header-date"></span></p>
+      <h1 class="title"><span class="t"><span>Xin chào, Yuu!</span></span></h1>
+      <figure class="quote">
+        <blockquote>“Tomorrow will be a good day, I promise”</blockquote>
+        <figcaption>Kenzo Tenma</figcaption>
+      </figure>
+    </header>
+
+    <main class="content" id="content">
+      <section class="tab-panel" id="panel-today">
+        <p class="placeholder">Chưa có gì ở đây — sẽ thêm thói quen ở bước tiếp theo.</p>
+      </section>
+      <section class="tab-panel" id="panel-stats" hidden>
+        <p class="placeholder">Chưa có gì ở đây — sẽ thêm thống kê ở bước tiếp theo.</p>
+      </section>
+      <section class="tab-panel" id="panel-settings" hidden>
+        <p class="placeholder">Chưa có gì ở đây — sẽ thêm cài đặt ở bước tiếp theo.</p>
+      </section>
+      <button class="add-btn" id="btn-add" type="button">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Thêm thói quen
+      </button>
+    </main>
+
+    <nav class="tabbar">
+      <button class="tab-btn" type="button" data-tab="today">
+        <span class="tab-label">Hôm nay</span>
+      </button>
+      <button class="tab-btn" type="button" data-tab="stats">
+        <span class="tab-label">Thống kê</span>
+      </button>
+      <button class="tab-btn" type="button" data-tab="settings">
+        <span class="tab-label">Cài đặt</span>
+      </button>
+    </nav>
+  </div>
+
+  <!-- Bottom sheet thêm/sửa thói quen — T2 -->
+  <div class="sheet-overlay" id="sheet-overlay" hidden>
+    <div class="sheet">
+      <h2 class="sheet-title" id="sheet-title">Thêm thói quen</h2>
+      <label class="field-label" for="h-name">Tên</label>
+      <input class="field-input" id="h-name" type="text" maxlength="30" placeholder="Ví dụ: Uống 2L nước">
+      <label class="field-label">Ngày trong tuần</label>
+      <div class="pick-row" id="h-days-row"></div>
+      <p class="field-error" id="h-error" role="alert"></p>
+      <div class="sheet-actions">
+        <button class="btn btn-danger" id="h-delete" type="button">Xóa</button>
+        <span class="spacer"></span>
+        <button class="btn btn-ghost" id="h-cancel" type="button">Hủy</button>
+        <button class="btn btn-primary" id="h-save" type="button">Lưu</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hộp xác nhận xóa (thay cho confirm() của trình duyệt) -->
+  <div class="confirm-overlay" id="confirm-overlay" hidden>
+    <div class="confirm" role="alertdialog" aria-modal="true" aria-labelledby="confirm-title" aria-describedby="confirm-text">
+      <h2 class="confirm-title" id="confirm-title">Xóa thói quen?</h2>
+      <p class="confirm-text" id="confirm-text"></p>
+      <div class="confirm-actions">
+        <button class="btn btn-ghost" id="confirm-cancel" type="button">Hủy</button>
+        <button class="btn btn-confirm" id="confirm-ok" type="button">Xác nhận</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="storage.js"></script>
+  <script src="habits.js"></script>
+  <script src="stats.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
